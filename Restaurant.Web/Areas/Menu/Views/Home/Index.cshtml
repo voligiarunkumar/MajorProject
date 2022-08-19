@@ -1,0 +1,69 @@
+﻿@using Restaurant.Web.Areas.Menu.ViewModels
+@model ShowMenuViewModel
+
+@{
+}
+
+<h1>The Menu</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Get items</button>
+        </form>
+    </div>
+</div>
+
+
+@if(Model != null && Model.MenuItems != null)
+{
+    <form method="post">
+        <input type="hidden" asp-for="CategoryId" />
+
+        <div class="card-columns mt-3">
+            @foreach(var item in Model.MenuItems) 
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"> @item.MenuItemName </h4>
+                        <p class="card-text"> @item.Description </p>
+                    </div>
+                    <div class="card-footer">
+                        <select asp-for="Quantity">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                        <button class="btn btn-sm btn-primary" type="submit"
+                                asp-area="Menu" asp-controller="Home" 
+                                asp-action="AddToCart" asp-route-id="@item.MenuItemId">
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+}
+
+
+
+@section HeadScripts {
+    <style>
+        h1 {
+            color: darkgreen;
+            text-align: center;
+            font-family: 'Brush Script MT', Arial;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+    </style>
+}
+
