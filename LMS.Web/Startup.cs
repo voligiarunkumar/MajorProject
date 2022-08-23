@@ -44,7 +44,7 @@ namespace LMS.Web
             // Register Entity Framework Core Servies to use SQL Server
             // Register the ApplicationDbContext as a Service that can be used using Dependency Injection (DI)
             services
-                .AddDbContext<ApplicationDbContext>((options) =>
+                .AddDbContext<MvcToDoListContext>((options) =>
                 {
                     options.UseSqlServer(Configuration.GetConnectionString("MyDefaultConnectionString"));
                 });
@@ -54,7 +54,7 @@ namespace LMS.Web
             // and store the data in the ApplicationDbContext
             services
                 .AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<MvcToDoListContext>();
 
             // Register the Razor View Engine to provide support for Razor Pages.
             services.AddRazorPages();
@@ -118,6 +118,9 @@ namespace LMS.Web
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area}/{controller}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area}/{controller}/{action=Index1}/{id?}");
 
                 // Register the ASP.NET Routes for the MVC Controllers
                 endpoints.MapControllerRoute(

@@ -1,71 +1,132 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
-
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
-
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+﻿
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    background-image: url("../imgs/nicebgphoto1.jpg");
+    background-size: cover;
 }
-.footer {
+/*.btn {
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 5px 35px;
+    border: 2px solid #00d8d6;
+    border-radius: 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s;
+    }
+
+    .btn:hover {
+        color: #fff;
+        animation: swoosh 0.4s ease-out 0.2s;
+    }
+
+    .btn:before,
+    .btn:after {
+        content: "";
+        background-color: #00d8d6;
+        height: 100%;
+        width: 100%;
+        opacity: 0.7;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        z-index: -1;
+        transition: all 0.4s ease-out 0.1s;
+    }
+
+    .btn:after {
+        opacity: 0;
+        transform: scale(0.9,0.7);
+        left: 0;
+        transition: all 0.3s ease-out 0s;
+    }
+
+    .btn:hover:before {
+        left: 100%;
+    }
+
+    .btn:hover:after {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+@keyframes swoosh {
+    0%,100% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(0,214,216,0.3);
+    }
+}*/
+
+@media only screen and (max-width: 767px) {
+    .btn {
+        margin-bottom: 20px;
+    }
+}
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
 }
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+ On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) 
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+
+        .sidebar a {
+            font-size: 18px;
+        }

@@ -1,0 +1,83 @@
+﻿@model LMS.Web.Models.ToDoList
+
+@{
+    ViewData["Title"] = "CreateTask";
+}
+
+<h4>
+    <center> @ViewData["Title"]</center></h4>
+<hr />
+<table >
+    <tr class="col-md-4">
+        <form asp-action="Create" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <tr class="form-group">
+                <label asp-for="UserName" class="control-label"><h6>Please Provide Email Address</h6></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </tr>
+            <tr class="form-group">
+                <label asp-for="Task" class="control-label"><h6>Enter Your Task</h6></label>
+                <input asp-for="Task" class="form-control" />
+                <span asp-validation-for="Task" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2">
+                <label asp-for="Description" class="control-label"><h6>Provide Task Discription</h6></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2 col-md-7">
+                <label asp-for="Status" class="control-label"><h6>Please select Status</h6></label>
+                <select asp-for="Status" asp-items="Model.StatusList" class="form-select"></select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2 col-md-7">
+                <label asp-for="Priority" class="control-label"><h6>select priority</h6></label>
+                <select asp-for="Priority" asp-items="Model.PriorityList" class="form-select"></select> 
+
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </tr>
+            </br>
+            <tr class="form-group mt-2">
+                <label asp-for="Assgignee" class="control-label"><h6>Provide Assignee Name</h6></label>
+                <input asp-for="Assgignee" class="form-control" />
+                <span asp-validation-for="Assgignee" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2">
+                <label asp-for="Comments" class="control-label"><h6>Enter any Comments</h6></label>
+                <input asp-for="Comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2 col-md-7">
+                <label asp-for="Created" class="control-label"><h6>Select created date</h6></label>
+                <input asp-for="Created" class="form-control" />
+                <span asp-validation-for="Created" class="text-danger"></span>
+            </tr>
+            <tr class="form-group mt-2 col-md-7">
+                <label asp-for="CompleteBy" class="control-label"><h6>select Due Date</h6></label>
+                <input asp-for="CompleteBy" class="form-control" />
+                <span asp-validation-for="CompleteBy" class="text-danger"></span>
+            </tr>
+            <br/>
+            <div>
+                <div>  
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="carousel-control-prev-icon"></i> Back</a>      
+                 <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </div>
+            <div>
+                &nbsp;&nbsp; &nbsp;&nbsp;
+              </div>
+              <div>
+                &nbsp;&nbsp; &nbsp;&nbsp;
+              </div>
+        </form>
+    </tr>
+</table>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

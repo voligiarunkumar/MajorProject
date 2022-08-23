@@ -1,0 +1,105 @@
+﻿@model LMS.Web.Models.ToDoListStatusPriorityViewModel
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4 class="mt-4">Task Scheduler</h4>
+
+<form asp-controller="ToDoLists" asp-action="Index" method="get">
+    <partial name="_CreateAndFilter" />
+</form>
+
+<table class="table table-striped table-hover">
+    <partial name="_TableHead" />
+
+    <tbody class="btn-secondary">
+
+        @foreach (var item in Model.ToDoLists)
+        {
+            if (@UserManager.GetUserName(User)== item.UserName)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Task)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td></td>
+                    @if (item.Priority == "Highest")
+                    {
+                        <td style="color:#8B0000;">
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                    }
+                    @if (item.Priority == "High")
+                    {
+                        <td class="text-danger">
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                    }
+                    @if (item.Priority == "Medium")
+                    {
+                        <td class="text-warning">
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                    }
+                    @if (item.Priority == "Low")
+                    {
+                        <td style="color:#1E90FF;">
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                    }
+                    @if (item.Priority == "Lowest")
+                    {
+                        <td style="color:#0000CD;">
+                            @Html.DisplayFor(modelItem => item.Priority)
+                        </td>
+                    } 
+                    <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Assgignee)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompleteBy)
+                </td>
+                <td></td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id"
+                   class="btn btn-primary">
+                        Details
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"
+                   class="btn btn-warning">
+                       Edit
+                    </a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id"
+                   class="btn btn-danger">
+                       Completed
+                    </a>
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
