@@ -18,6 +18,7 @@ namespace LMS.Web.Areas.Controllers
     public class ToDoListsController : Controller
     {
         private readonly MvcToDoListContext _context;
+        
 
         public ToDoListsController(MvcToDoListContext context)
         {
@@ -59,7 +60,7 @@ namespace LMS.Web.Areas.Controllers
             {
                 Priorities = new SelectList(await priorityQuery.Distinct().ToListAsync()),
                 Statuses = new SelectList(await statusQuery.Distinct().ToListAsync()),
-               ToDoLists = await toDoList.ToListAsync()
+                ToDoLists = await toDoList.ToListAsync()
             };
 
             return View(toDoListStatusPriorityVM);
@@ -164,6 +165,22 @@ namespace LMS.Web.Areas.Controllers
 
             return View(toDoList);
         }
+        public async Task<IActionResult> Details1(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var toDoList = await _context.ToDoList
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (toDoList == null)
+            {
+                return NotFound();
+            }
+
+            return View(toDoList);
+        }
 
         // GET: ToDoList/Create
         public IActionResult Create()
@@ -187,12 +204,12 @@ namespace LMS.Web.Areas.Controllers
             }
         
 
-            if (!isDuplicateFoundusername)
+            if (isDuplicateFoundusername)
             {
                 _context.Add(toDoList);
                 await _context.SaveChangesAsync();
                 TempData["Success"] = "To Do created successfully";
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Details1",new{ toDoList.Id});
             }
             else
             {
@@ -222,7 +239,7 @@ namespace LMS.Web.Areas.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UseName,Task,Description,Status,Priority,Assgignee,Comments,Created,CompleteBy")] ToDoList toDoList)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,UserName,Task,Description,Status,Priority,Assgignee,Comments,Created,CompleteBy")] ToDoList toDoList)
         {
             if (id != toDoList.Id)
             {

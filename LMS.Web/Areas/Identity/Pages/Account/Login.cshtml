@@ -47,16 +47,34 @@
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
-            <h4>Our Security policy.</h4>
+            <h4>Make Best Use of TaskScheduler</h4>
             <hr />
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                         <div>
-                            <p>
+                            <table >
+                            <td>
+                             <p>
+                              <ul>
+                              <li>Tasks should be fast to add and organise</li>
+                              <li>There should be a variety of ways to organise the tasks</li> 
                                 
+                               <li>Ability to plan your<a class="btn btn-light"> workflow</a></li> 
+                               <li> Setting priorities</li>
+                               <li class="btn btn-success">Schedule it for any self-imposed deadlines.</li> 
+                               <li>Schedule your tasks if using it for task management with a team.</li>
+                               
+                                 </ul>
                             </p>
-                         
+                             &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp;
+                            </td>
+                             <td>
+                             
+                            <img src="~/imgs/video-call-monochromatic-2-500x500.png" width="250"></img>
+                            </td>
+                            
+                            </table>
                         </div>
                 }
                 else
